@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.btbw.core.common.Component;
 import pl.btbw.core.common.Link;
-import pl.btbw.core.product.core.Product;
 import pl.btbw.core.product.core.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 public class ProductController {
@@ -23,11 +24,15 @@ public class ProductController {
 	@RequestMapping(value = {"/component/product"})
 	public List<Link> links() {
 		List<Link> links = new ArrayList<>();
-		links.add(new Link("http://localhost:8095/component/product/{id}/author"));
-		links.add(new Link("http://localhost:8095/component/product/{id}/brand"));
-		links.add(new Link("http://localhost:8095/component/product/{id}/info"));
-		links.add(new Link("http://localhost:8095/component/product/{id}/all"));
-		links.add(new Link("http://localhost:8095/component/product/{id}/all/MAP"));
+		links.add(new Link("http://localhost:8095/component/product/1/author"));
+		links.add(new Link("http://localhost:8095/component/product/1/brand"));
+		links.add(new Link("http://localhost:8095/component/product/1/info"));
+		links.add(new Link("http://localhost:8095/component/product/1/all/LIST"));
+		links.add(new Link("http://localhost:8095/component/product/1/all/MAP"));
+
+		links.add(new Link("http://localhost:8095/component/products/ITEM"));
+		links.add(new Link("http://localhost:8095/component/products/LIST"));
+		links.add(new Link("http://localhost:8095/component/products/MAP"));
 		return links;
 	}
 
@@ -55,7 +60,7 @@ public class ProductController {
 				.buildOne();
 	}
 
-	@RequestMapping(value = {"/component/product/{id}/all"})
+	@RequestMapping(value = {"/component/product/{id}/all/LIST"})
 	public List<Component> componentAll(@PathVariable("id") long id) {
 		return productRepository.getOne(id)
 				.componentProvider()
@@ -73,6 +78,43 @@ public class ProductController {
 				.infoProductComponent()
 				.authorProductComponent()
 				.buildMap();
+	}
+
+	@RequestMapping(value = {"/component/products/ITEM"})
+	public List<Component> componentsItem() {
+		return productRepository.findAll()
+				.stream()
+				.map(product -> product
+						.componentProvider()
+						.infoProductComponent()
+						.buildOne())
+				.collect(Collectors.toList());
+	}
+
+	@RequestMapping(value = {"/component/products/LIST"})
+	public List<List<Component>> componentsList() {
+		return productRepository.findAll()
+				.stream()
+				.map(product -> product
+						.componentProvider()
+						.brandProductComponent()
+						.infoProductComponent()
+						.authorProductComponent()
+						.buildList())
+				.collect(Collectors.toList());
+	}
+
+	@RequestMapping(value = {"/component/products/MAP"})
+	public Set<Map<String, Component>> componentsMap() {
+		return productRepository.findAll()
+				.stream()
+				.map(product -> product
+						.componentProvider()
+						.brandProductComponent()
+						.infoProductComponent()
+						.authorProductComponent()
+						.buildMap())
+				.collect(Collectors.toSet());
 	}
 
 }
