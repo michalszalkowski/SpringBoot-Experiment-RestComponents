@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.btbw.core.common.Component;
-import pl.btbw.core.common.Link;
+import pl.btbw.core.common.output.Component;
+import pl.btbw.core.common.output.Link;
+import pl.btbw.core.product.core.Product;
 import pl.btbw.core.product.core.ProductRepository;
+import pl.btbw.core.product.form.InfoFormComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,6 +117,14 @@ public class ProductController {
 						.authorProductComponent()
 						.buildMap())
 				.collect(Collectors.toSet());
+	}
+
+	@RequestMapping(value = {"/update"})
+	public String updateTest() {
+		Product product = productRepository.getOne(1L);
+		product.update(new InfoFormComponent("test"));
+		productRepository.saveAndFlush(product);
+		return "ok";
 	}
 
 }

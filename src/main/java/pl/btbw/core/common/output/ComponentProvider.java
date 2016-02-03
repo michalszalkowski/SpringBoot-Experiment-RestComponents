@@ -1,4 +1,4 @@
-package pl.btbw.core.common;
+package pl.btbw.core.common.output;
 
 import java.util.ArrayList;
 import java.util.HashMap;

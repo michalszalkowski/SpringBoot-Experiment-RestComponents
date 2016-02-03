@@ -1,12 +1,14 @@
 package pl.btbw.core.product.core;
 
+import pl.btbw.core.common.input.FormComponent;
+import pl.btbw.core.common.input.Updatable;
 import pl.btbw.core.product.ProductComponentProvider;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity(name = "product")
-public class Product {
+public class Product implements Updatable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +40,10 @@ public class Product {
 
 	public ProductComponentProvider componentProvider() {
 		return new ProductComponentProvider(this);
+	}
+
+	public void update(FormComponent form) {
+		form.update(this);
 	}
 
 	public Long getId() {

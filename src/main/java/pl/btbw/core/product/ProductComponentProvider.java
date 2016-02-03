@@ -1,6 +1,6 @@
 package pl.btbw.core.product;
 
-import pl.btbw.core.common.ComponentProvider;
+import pl.btbw.core.common.output.ComponentProvider;
 import pl.btbw.core.product.components.AuthorProductComponent;
 import pl.btbw.core.product.components.BrandProductComponent;
 import pl.btbw.core.product.components.InfoProductComponent;

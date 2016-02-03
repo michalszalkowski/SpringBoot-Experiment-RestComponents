@@ -1,6 +1,6 @@
 package pl.btbw.core.product.components;
 
-import pl.btbw.core.common.Component;
+import pl.btbw.core.common.output.Component;
 
 import java.math.BigDecimal;
 
