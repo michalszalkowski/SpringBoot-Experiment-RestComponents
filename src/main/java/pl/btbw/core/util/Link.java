@@ -1,4 +1,4 @@
-package pl.btbw.core.common.output;
+package pl.btbw.core.util;
 
 public class Link {
 

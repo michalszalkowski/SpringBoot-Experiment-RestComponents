@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.btbw.core.common.output.Component;
-import pl.btbw.core.common.output.Link;
+import pl.btbw.core.util.Link;
 import pl.btbw.core.product.core.Product;
 import pl.btbw.core.product.core.ProductRepository;
 import pl.btbw.core.product.form.InfoFormComponent;
