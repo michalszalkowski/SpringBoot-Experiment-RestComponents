@@ -4,10 +4,10 @@ import pl.btbw.core.common.output.Component;
 
 public class BrandProductComponent extends Component {
 
-	private final Long id;
-	private final String slug;
-	private final String brand;
-	private final String description;
+	public final Long id;
+	public final String slug;
+	public final String brand;
+	public final String description;
 
 	public BrandProductComponent(Long id, String slug, String brand, String description) {
 		this._nameComponent = "BrandProductComponent";
@@ -15,21 +15,5 @@ public class BrandProductComponent extends Component {
 		this.slug = slug;
 		this.brand = brand;
 		this.description = description;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public String getBrand() {
-		return brand;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 }

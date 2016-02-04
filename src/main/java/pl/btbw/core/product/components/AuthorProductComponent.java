@@ -4,26 +4,14 @@ import pl.btbw.core.common.output.Component;
 
 public class AuthorProductComponent extends Component {
 
-	private final Long id;
-	private final String index;
-	private final String author;
+	public final Long id;
+	public final String index;
+	public final String author;
 
 	public AuthorProductComponent(Long id, String index, String author) {
 		this._nameComponent = "AuthorProductComponent";
 		this.id = id;
 		this.index = index;
 		this.author = author;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getIndex() {
-		return index;
-	}
-
-	public String getAuthor() {
-		return author;
 	}
 }
